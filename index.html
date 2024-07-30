@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>signature-canvas Web Component</title>
+    <script type="module" src="./example/main.ts"></script>
+    <style>
+      dyn-web-signature-canvas {
+        width: 300px;
+        height: 200px;
+        margin: 0 auto;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <dyn-web-signature-canvas></dyn-web-signature-canvas>
+    <button onclick="handleClear()">clear</button>
+    <button onclick="handleBase64()">获取图片base64</button>
+    <script>
+      function onMoveCountChange(e) {
+        console.log(e.detail);
+      }
+      const dom = document.querySelector("dyn-web-signature-canvas");
+      dom.addEventListener("move-count-change", onMoveCountChange);
+
+      function handleClear() {
+        dom.clear();
+      }
+
+      function handleBase64() {
+        const base64 = dom.toBase64Image("image/jpeg", 0.5);
+        console.log(base64);
+      }
+    </script>
+  </body>
+</html>
